@@ -96,17 +96,13 @@ statusText() {
 getData() {
     echo ""
     PASSWORD="asdf"
-    echo ""
-    colorEcho $BLUE "密码： $PASSWORD"
+    colorEcho $BLUE " 密码： $PASSWORD"
     PORT=12345
-    echo ""
-    colorEcho $BLUE "端口： $PORT"
+    colorEcho $BLUE " 端口： $PORT"
     METHOD="aes-256-gcm"
-    echo ""
-    colorEcho $BLUE "加密方式： $METHOD"
-    read -p " 请设置DNS（不输入则8888）:" SSDNS
+    colorEcho $BLUE " 加密方式： $METHOD"
+    read -p "请设置DNS（不输入则8888）:" SSDNS
     [[ -z "$SSDNS" ]] && SSDNS=`8.8.8.8`
-    echo ""
     colorEcho $BLUE " DNS： $SSDNS"
 }
 
