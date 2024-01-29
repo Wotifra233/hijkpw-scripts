@@ -278,6 +278,7 @@ LimitNOFILE=32768
 ExecStart=$ssPath -c $CONFIG_FILE -f /var/run/${NAME}.pid
 ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s TERM \$MAINPID
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
