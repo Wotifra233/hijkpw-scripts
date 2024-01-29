@@ -104,6 +104,10 @@ getData() {
     METHOD="aes-256-gcm"
     echo ""
     colorEcho $BLUE "加密方式： $METHOD"
+    read -p " 请设置DNS（不输入则8888）:" SSDNS
+    [[ -z "$SSDNS" ]] && SSDNS=`8.8.8.8`
+    echo ""
+    colorEcho $BLUE " DNS： $SSDNS"
 }
 
 preinstall() {
@@ -234,7 +238,7 @@ configSS(){
     "password":"${PASSWORD}",
     "timeout":600,
     "method":"${METHOD}",
-    "nameserver":"8.8.8.8",
+    "nameserver":"${SSDNS}",
     "mode":"tcp_and_udp",
     "fast_open":false
 }
