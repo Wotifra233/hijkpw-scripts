@@ -346,6 +346,7 @@ showInfo() {
     echo -e "  ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
     echo -e "  ${BLUE}密码(password)：${PLAIN}${RED}${password}${PLAIN}"
     echo -e "  ${BLUE}加密方式(method)：${PLAIN} ${RED}${method}${PLAIN}"
+    echo -e "  ${BLUE}DNS(nameserver)：${PLAIN} ${RED}${SSDNS}${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
     #qrencode -o - -t utf8 ${link}
