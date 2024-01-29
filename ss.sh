@@ -102,7 +102,7 @@ getData() {
     METHOD="aes-256-gcm"
     colorEcho $BLUE " 加密方式： $METHOD"
     read -p "请设置DNS（不输入则8888）:" SSDNS
-    [[ -z "$SSDNS" ]] && SSDNS=`8.8.8.8`
+    [[ -z "$SSDNS" ]] && SSDNS="8.8.8.8"
     colorEcho $BLUE " DNS： $SSDNS"
 }
 
