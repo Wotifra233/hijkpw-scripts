@@ -95,105 +95,13 @@ statusText() {
 
 getData() {
     echo ""
-    read -p " 请设置SS的密码（不输入则随机生成）:" PASSWORD
-    [[ -z "$PASSWORD" ]] && PASSWORD=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1`
+    PASSWORD="asdf"
     echo ""
-    colorEcho $BLUE " 密码： $PASSWORD"
-
+    colorEcho $BLUE "密码： $PASSWORD"
+    PORT=12345
     echo ""
-    while true
-    do
-        read -p " 请设置SS的端口号[1025-65535]:" PORT
-        [[ -z "$PORT" ]] && PORT=`shuf -i1025-65000 -n1`
-        if [[ "${PORT:0:1}" = "0" ]]; then
-            echo -e " ${RED}端口不能以0开头${PLAIN}"
-            exit 1
-        fi
-        expr $PORT + 0 &>/dev/null
-        if [[ $? -eq 0 ]]; then
-            if [[ $PORT -ge 1025 ]] && [[ $PORT -le 65535 ]]; then
-                echo ""
-                colorEcho $BLUE " 端口号： $PORT"
-                echo ""
-                break
-            else
-                colorEcho $RED " 输入错误，端口号为1025-65535的数字"
-            fi
-        else
-            colorEcho $RED " 输入错误，端口号为1025-65535的数字"
-        fi
-    done
-    colorEcho $RED " 请选择加密方式:" 
-    echo "  1)aes-256-gcm"
-    echo "  2)aes-192-gcm"
-    echo "  3)aes-128-gcm"
-    echo "  4)aes-256-ctr"
-    echo "  5)aes-192-ctr"
-    echo "  6)aes-128-ctr"
-    echo "  7)aes-256-cfb"
-    echo "  8)aes-192-cfb"
-    echo "  9)aes-128-cfb"
-    echo "  10)camellia-128-cfb"
-    echo "  11)camellia-192-cfb"
-    echo "  12)camellia-256-cfb"
-    echo "  13)chacha20-ietf"
-    echo "  14)chacha20-ietf-poly1305"
-    echo "  15)xchacha20-ietf-poly1305"
-    read -p " 请选择（默认aes-256-gcm）" answer
-    if [[ -z "$answer" ]]; then
-        METHOD="aes-256-gcm"
-    else
-        case $answer in
-        1)
-            METHOD="aes-256-gcm"
-            ;;
-        2)
-            METHOD="aes-192-gcm"
-            ;;
-        3)
-            METHOD="aes-128-gcm"
-            ;;
-        4)
-            METHOD="aes-256-ctr"
-            ;;
-        5)
-            METHOD="aes-192-ctr"
-            ;;
-        6)
-            METHOD="aes-128-ctr"
-            ;;
-        7)
-            METHOD="aes-256-cfb"
-            ;;
-        8)
-            METHOD="aes-192-cfb"
-            ;;
-        9)
-            METHOD="aes-128-cfb"
-            ;;
-        10)
-            METHOD="camellia-128-cfb"
-            ;;
-        11)
-            METHOD="camellia-192-cfb"
-            ;;
-        12)
-            METHOD="camellia-256-cfb"
-            ;;
-        13)
-            METHOD="chacha20-ietf"
-            ;;
-        14)
-            METHOD="chacha20-ietf-poly1305"
-            ;;
-        15)
-            METHOD="xchacha20-ietf-poly1305"
-            ;;
-        *)
-            colorEcho $RED " 无效的选择，使用默认的aes-256-gcm"
-            METHOD="aes-256-gcm"
-        esac
-    fi
+    colorEcho $BLUE "端口： $PORT"
+    METHOD="aes-256-gcm"
     echo ""
     colorEcho $BLUE "加密方式： $METHOD"
 }
